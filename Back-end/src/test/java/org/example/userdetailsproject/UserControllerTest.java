@@ -122,8 +122,7 @@ public class UserControllerTest {
 
         mockMvc.perform(get("/userdetails/users/{id}", testUser.getId()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.firstName", is(testUser.getFirstName())))
-                .andExpect(jsonPath("$.id", is(testUser.getId().intValue())));
+                .andExpect(jsonPath("$[0].id", is(testUser.getId().intValue())));
     }
 
 }

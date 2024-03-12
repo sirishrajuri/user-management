@@ -41,7 +41,6 @@ public class UserControllerIntr {
         return ResponseEntity.ok(updatedUser);
     }
 
-    // Delete user by ID
     @DeleteMapping("/users/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
@@ -54,12 +53,13 @@ public class UserControllerIntr {
         return ResponseEntity.ok(users);
     }
 
-    // API endpoint to find user by ID
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserEntity> findUserById(@PathVariable Long id) {
+    public ResponseEntity<List<UserEntity>> findUserById(@PathVariable Long id) {
         UserEntity user = userService.findUserById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found for this id: " + id));
-        return ResponseEntity.ok(user);
+        List<UserEntity> users = new ArrayList<>();
+        users.add(user);
+        return ResponseEntity.ok(users);
     }
 
 }

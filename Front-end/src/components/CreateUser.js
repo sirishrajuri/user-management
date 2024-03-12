@@ -18,7 +18,7 @@ const CreateUser = ({ refreshUsers }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/users', user)
+    axios.post('http://localhost:8080/userdetails/createuser', user)
       .then(() => {
         refreshUsers();
         setUser({
@@ -29,7 +29,7 @@ const CreateUser = ({ refreshUsers }) => {
           phoneNumber: '',
           dateOfBirth: '',
           address: '',
-        }); // Reset form
+        }); 
       })
       .catch(error => console.error('Error creating user:', error));
   };
